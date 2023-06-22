@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
     private TextPanel textpanel;
-    private JButton b1;
+//    private JButton b1;
+    private Toolbar toolbar;
     public MainFrame()
     {
         super("Hello World");
@@ -14,17 +15,18 @@ public class MainFrame extends JFrame {
         setVisible(true);
         setLayout(new BorderLayout());//using the BorderLayout layout manager
 
-//        textarea = new TextArea();//creating instances of the private declarations;
-        b1 = new JButton("Click me vro!");
         textpanel = new TextPanel();
-        add(textpanel,BorderLayout.CENTER);
-        add(b1,BorderLayout.SOUTH);//added locations
+        toolbar = new Toolbar();
 
-        //creating the action listener interface for the button
-        b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                textpanel.appendText("Hello Parasar\n");
+        toolbar.setStringListener(new StringListener() {
+            public void textEmmited(String text) {
+                textpanel.appendText(text);
             }
         });
+
+        add(textpanel,BorderLayout.CENTER);
+        add(toolbar,BorderLayout.NORTH);
+
+
     }
 }
