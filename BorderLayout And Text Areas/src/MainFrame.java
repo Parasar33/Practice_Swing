@@ -5,8 +5,9 @@ import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
     private TextPanel textpanel;
-//    private JButton b1;
     private Toolbar toolbar;
+
+    private FormPanel formpanel;
     public MainFrame()
     {
         super("Hello World");
@@ -17,15 +18,24 @@ public class MainFrame extends JFrame {
 
         textpanel = new TextPanel();
         toolbar = new Toolbar();
+        formpanel = new FormPanel();
 
         toolbar.setStringListener(new StringListener() {
             public void textEmmited(String text) {
                 textpanel.appendText(text);
             }
         });
+        formpanel.setFormListener(new FormListener() {
+            public void formEvent(FormEvent e) {
+                String name = e.getName();
+                String occupation = e.getOccupation();
+                textpanel.appendText(name + " : "+occupation+ "\n");
+            }
+        });
 
         add(textpanel,BorderLayout.CENTER);
         add(toolbar,BorderLayout.NORTH);
+        add(formpanel,BorderLayout.WEST);
 
 
     }

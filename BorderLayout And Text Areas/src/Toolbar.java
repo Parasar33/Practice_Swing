@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,10 @@ public class Toolbar extends JPanel implements ActionListener {
     private StringListener textlistener;
     public Toolbar()
     {
+        Border innertool = BorderFactory.createEtchedBorder();
+        Border outertool = BorderFactory.createEmptyBorder(5,5,5,5);
+        setBorder(BorderFactory.createCompoundBorder(outertool,innertool));
+
         helloButton = new JButton("hello");
         byeButton = new JButton("bye");
 
